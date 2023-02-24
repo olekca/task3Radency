@@ -63,6 +63,13 @@ namespace task2
                 endpoints.MapControllerRoute(
                     name: "task2",
                     pattern: "{controller=api}/{action=recommended}/{genre?}");
+                endpoints.MapControllerRoute(
+                   name: "task3",
+                   pattern: "{controller=api}/{action=books}/{id}")
+                   ;
+                endpoints.MapControllerRoute(
+                   name: "task4",
+                   pattern: "{controller=api}/{action=books}/{id}/{secret?}");
             });
         }
     }

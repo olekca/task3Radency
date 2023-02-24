@@ -14,7 +14,8 @@ namespace task2.Models
         public DbSet<Rating> Ratings { get; set; }
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
            : base(options)
-        {   
+        {
+            Database.EnsureDeleted();
             Database.EnsureCreated();  
         }
 
@@ -26,23 +27,23 @@ namespace task2.Models
                 {
                 new Book { Id=1, Title="Alice's Adventures in Wonderland",
                     Content = "The story centres on Alice, a young girl who falls asleep in a meadow and dreams that she follows the White Rabbit down a rabbit hole.",
-                    Author="Lewis Carroll", Genre="Fantasy"},
+                    Author="Lewis Carroll", Genre="Fantasy", Cover = defaultCover},
                 new Book { Id=2, Title="The Hobbit, or There and Back Again", 
                     Content = "Story follows the quest of home-loving Bilbo Baggins, the titular hobbit, to win a share of the treasure guarded by a dragon named Smaug.",
-                    Author="J. R. R. Tolkien", Genre="Fantasy"},
+                    Author="J. R. R. Tolkien", Genre="Fantasy", Cover = defaultCover},
                 new Book { Id=3, Title="The Lord of the Rings", 
                     Content = "The story concerns peoples such as Hobbits, Elves, Men, Dwarves, Wizards, and Orcs and centres on the Ring of Power made by the Dark Lord Sauron. Starting from quiet beginnings in The Shire, the story ranges across Middle-earth and follows the courses of the War of the Ring.",
-                    Author="J. R. R. Tolkien", Genre="Fantasy"},
+                    Author="J. R. R. Tolkien", Genre="Fantasy", Cover = defaultCover},
                 new Book { Id=4, Title="Harry Potter and the Philosopher's Stone", Content = " Harry Potter, a young wizard, discovers his magical heritage on his eleventh birthday, when he receives a letter of acceptance to Hogwarts School of Witchcraft and Wizardry.",
-                    Author="J. K. Rowling", Genre="Fantasy"},
+                    Author="J. K. Rowling", Genre="Fantasy", Cover = defaultCover},
                 new Book { Id=5, Title="Flowers for Algernon", 
                     Content = "Charlie Gordon is a man with an IQ of 68 who works a menial job as a janitor at a factory, and is attending a literacy program taught by Ms. Kinnian. He is selected to undergo an experimental surgical technique to increase his intelligence.",
-                    Author="Daniel Keyes", Genre="Science fiction"},
+                    Author="Daniel Keyes", Genre="Science fiction", Cover = defaultCover},
                 new Book { Id=6, Title="Do Androids Dream of Electric Sheep?", Content = "The main plot follows Rick Deckard, a bounty hunter who is tasked with \"retiring\" (i.e. killing) six escaped Nexus-6 model androids",
-                    Author="Philip K. Dick", Genre="Science fiction"},
+                    Author="Philip K. Dick", Genre="Science fiction", Cover = defaultCover},
                 new Book { Id=7, Title="Frankenstein", 
                     Content = "Frankenstein tells the story of Victor Frankenstein, a young scientist who creates a sapient creature in an unorthodox scientific experiment.",
-                    Author="Mary Shelley", Genre="Science fiction"}
+                    Author="Mary Shelley", Genre="Science fiction", Cover = defaultCover}
                 });
 
             modelBuilder.Entity<Rating>().HasData(
