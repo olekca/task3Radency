@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -30,35 +31,60 @@ namespace task2
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(connection));
             services.AddControllersWithViews();
+
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "task3/dist";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
+            if (!env.IsDevelopment())
+            {
+                app.UseSpaStaticFiles();
+            }
 
-            app.UseRouting();
+            app.UseSpa(spa =>
+            {
+                spa.Options.SourcePath = "task3";
 
-            app.UseAuthorization();
-
-            app.UseEndpoints(endpoints =>
-            {//GET https://{{baseUrl}}/api/books?order=author
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
-                
+                if (env.IsDevelopment())
+                {
+                    spa.UseAngularCliServer(npmScript: "start");
+                }
             });
+            /* if (env.IsDevelopment())
+             {
+                 app.UseDeveloperExceptionPage();
+             }
+             else
+             {
+                 app.UseExceptionHandler("/Home/Error");
+                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                 app.UseHsts();
+             }
+             app.UseHttpsRedirection();
+             app.UseStaticFiles();
+
+             app.UseRouting();
+
+             app.UseAuthorization();
+
+             app.UseEndpoints(endpoints =>
+             {//GET https://{{baseUrl}}/api/books?order=author
+                 endpoints.MapControllerRoute(
+                     name: "default",
+                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+             });*/
         }
     }
 }
