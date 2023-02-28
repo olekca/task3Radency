@@ -5,19 +5,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
-import { AppComponent } from './app.component';
-import { ModalModule } from './_modal';
-let AppModule = class AppModule {
+import { CommonModule } from '@angular/common';
+import { ModalComponent } from './modal.component';
+let ModalModule = class ModalModule {
 };
-AppModule = __decorate([
+ModalModule = __decorate([
     NgModule({
-        imports: [BrowserModule, FormsModule, ModalModule, HttpClientModule],
-        declarations: [AppComponent],
-        bootstrap: [AppComponent]
+        imports: [CommonModule],
+        declarations: [ModalComponent],
+        exports: [ModalComponent]
     })
-], AppModule);
-export { AppModule };
-//# sourceMappingURL=app.module.js.map
+], ModalModule);
+export { ModalModule };
+//# sourceMappingURL=modal.module.js.map

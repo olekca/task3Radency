@@ -1,0 +1,90 @@
+﻿table {
+    
+}
+.rowCont{
+    display: flex;
+    flex-direction: row;
+}
+.colCont {
+    display: flex;
+    flex-direction: column;
+}
+.justifyLeft{
+
+    justify-content:flex-start;
+}
+.justifyCenter {
+
+    justify-content: center;
+}
+.justifyEnd {
+
+    justify-content: flex-end;
+}
+.modeChooser{
+    margin: 10px;
+    width: 150px;
+}
+.bookForm {
+    border: solid;
+    padding: 20px;
+    margin: 30px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+img {
+    width: 10px;
+    height: 10px;
+    object-fit: contain;
+}
+.mainImg {
+    width: 100px;
+    height: 100px;
+}
+.bookList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-between;
+    margin-left: 7%;
+    margin-right: 7%;
+    border: solid;
+}
+.book {
+    width: 400px;
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+    margin:10px;
+    border: solid;
+    padding:5px;
+}
+.spaceBetween {
+    justify-content: space-between;
+}
+
+.alignStart{
+    align-items: flex-start;
+}
+
+
+.emptySpace{
+    padding: 10px;
+}
+
+label{
+    margin: 10px;
+}
+.underline {
+    border-bottom: solid;
+}
+.h1{
+    margin:5%;
+}
+.littleMargin{
+    margin-left:5px;
+}
+.buttonsCont{
+    margin-left: 7%;
+}

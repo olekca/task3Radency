@@ -30,12 +30,14 @@ namespace task2
             
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(connection));
-            services.AddControllersWithViews();
+            //services.AddControllersWithViews();
 
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "task3/dist";
             });
+            services.AddControllers();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +62,18 @@ namespace task2
                 {
                     spa.UseAngularCliServer(npmScript: "start");
                 }
+            });
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                app.UseEndpoints(endpoints =>
+                {//GET https://{{baseUrl}}/api/books?order=author
+                    endpoints.MapControllerRoute(
+                        name: "default",
+                        pattern: "{controller=api}/{action=getBooks}");
+
+                });
             });
             /* if (env.IsDevelopment())
              {

@@ -1,0 +1,82 @@
+﻿<!--upper part, where add/edit-->
+<div>
+    <!--container with three elements - title, form block and buttons block-->
+    <h1>Library</h1>
+    <div class="colCont bookForm">
+        <label class="underline">{{addModeTitle}}</label>
+        <!--form conteiner with two columns-->
+        <div class="rowCont justifyCenter">
+            <div class="colCont">
+
+                <div class="form-group rowCont">
+                    <label>Title</label>
+                    <input type="text" [(ngModel)]="book.Title" class="form-control" />
+                </div>
+                <div class="form-group rowCont">
+                    <label>Cover</label>
+                    <input type="file" accept="image/jpeg" id="cover" class="form-control" (change)="onFileChange($event)" />
+                </div>
+                <div class="form-group rowCont">
+                    <label>Genre</label>
+                    <input type="text" [(ngModel)]="book.Genre" class="form-control" />
+                </div>
+                <div class="form-group rowCont">
+                    <label>Author</label>
+                    <input type="text" [(ngModel)]="book.Author" class="form-control" />
+                </div>
+            </div>
+            <div class="colCont">
+                <div class="form-group rowCont">
+                    <label>Content</label>
+                    <textarea cols="40" rows="8" [(ngModel)]="book.Content"></textarea>
+                </div>
+
+            </div>
+        </div>
+        <!--buttons conteiner-->
+        <div class="rowCont justifyCenter">
+            <input type="button" value="Сохранить" (click)="save()" class="btn btn-sm btn-success" />
+            <input type="button" value="Отмена" (click)="clean()" class="btn btn-sm btn-warning" />
+            
+        </div>
+    </div>
+</div>
+
+<div class="buttonsCont">
+    <button (click)="recommend(false)" class="modeChooser btn btn-sm btn-success" >All</button>
+    <button (click)="recommend(true)" class="modeChooser btn btn-sm btn-success">Recommended</button>
+</div>
+<div class="bookList">
+    <div *ngFor="let b of books" class="book spaceBetween">
+        <ng-template [ngIf]="book?.Id != b.Id" >
+            <div class="colCont justifyCenter"><img src="img/cover.jpg" class="mainImg"></div>
+            <div class="colCont justifyCenter">
+                <div class="rowCont">{{b?.Title}}</div>
+                <div class="emptySpace"></div>
+                <div class="rowCont spaceBetween">
+                    <div>Rewiew: {{b?.ReviewsNumber}}</div>
+                    <div class="littleMargin"> Rating:{{b?.Rating}}</div>
+                </div>
+            </div>
+            <div class="rowCont alignStart justifyEnd">
+                <button (click)="editProduct(b)">
+                    edit
+                    <img src="img/edit.png" border="0" />
+                </button>
+                <button (click)="openModal('custom-modal-1')">
+                    show
+                    <img src="img/show.png" border="0" />
+                </button>
+            </div>
+            
+
+        </ng-template>
+    </div>
+</div>
+
+
+<jw-modal id="custom-modal-1">
+    <h1>A Custom Modal!</h1>
+    
+    <button (click)="closeModal('custom-modal-1');">Close</button>
+</jw-modal>

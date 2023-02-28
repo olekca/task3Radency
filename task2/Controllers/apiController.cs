@@ -10,6 +10,8 @@ using System.Configuration;
 
 namespace task2.Controllers
 {
+    [ApiController]
+    [Route("/FS")]
     public class apiController : Controller
     {
         private ApplicationContext db;
@@ -190,5 +192,25 @@ namespace task2.Controllers
             
             return View();
         }
+
+        
+        [HttpGet]
+        public IEnumerable<BookDTO> getBooks()
+        {
+            var temp = from b in db.Books
+                       orderby b.Author
+                       select new BookDTO
+                       {
+                           Id = b.Id,
+                           Title = b.Title,
+                           Author = b.Author,
+                           ReviewsNumber = b.Reviews.Count(),
+                           Rating = Convert.ToDecimal((from r in b.Ratings
+                                                       select r.Score).Average())
+                       };
+            List<BookDTO> res = temp.ToList<BookDTO>();
+            return res;
+        }
+
     }
 }

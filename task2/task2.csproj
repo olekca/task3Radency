@@ -29,4 +29,8 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="task3\src\app\NewFolder\" />
+  </ItemGroup>
+
 </Project>
